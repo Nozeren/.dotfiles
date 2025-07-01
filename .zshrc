@@ -76,7 +76,7 @@ ZSH_THEME="simple"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git nvm zsh-syntax-highlighting zsh-autosuggestions
-				 sudo npm zsh-nvm docker tmux)
+				 sudo npm zsh-nvm docker tmux pip)
 
 #ZSH_TMUX_AUTOSTART=true
 source $ZSH/oh-my-zsh.sh
@@ -121,4 +121,5 @@ fi
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+source <(fzf --zsh)
 export PATH="/usr/local/bin:$PATH"
