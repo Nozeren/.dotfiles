@@ -23,38 +23,39 @@ return require('packer').startup(function(use)
     }
     -- Colorscheme 
     use{
-        "rebelot/kanagawa.nvim",
+        "vague2k/vague.nvim",
         config = function()
-            vim.cmd("colorscheme kanagawa")
+            -- NOTE: you do not need to call setup if you don't want to.
+                vim.cmd("colorscheme vague")
         end
-    }
-    --Auto formater
-    use{
-        "stevearc/conform.nvim",
-        config = function()
-            require("conform").setup()
+        }
+        --Auto formater
+        use{
+            "stevearc/conform.nvim",
+            config = function()
+                require("conform").setup()
+            end
+        }
+        -- Treesitter
+        use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate'})
+        -- Undotree
+        use('mbbill/undotree')
+        -- LSP
+        use {
+            "williamboman/mason.nvim",
+            "williamboman/mason-lspconfig.nvim",
+            "neovim/nvim-lspconfig",
+            'hrsh7th/cmp-nvim-lsp',
+            'hrsh7th/nvim-cmp',
+        }
+        -- Lualine
+        use {
+            'nvim-lualine/lualine.nvim',
+            requires = { 'nvim-tree/nvim-web-devicons', opt = true }
+        }
+        -- Automatically set up your configuration after cloning packer.nvim
+        -- Put this at the end after all plugins
+        if packer_bootstrap then
+            require('packer').sync()
         end
-    }
-    -- Treesitter
-    use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate'})
-    -- Undotree
-    use('mbbill/undotree')
-    -- LSP
-    use {
-        "williamboman/mason.nvim",
-        "williamboman/mason-lspconfig.nvim",
-        "neovim/nvim-lspconfig",
-        'hrsh7th/cmp-nvim-lsp',
-        'hrsh7th/nvim-cmp',
-    }
-    -- Lualine
-    use {
-        'nvim-lualine/lualine.nvim',
-        requires = { 'nvim-tree/nvim-web-devicons', opt = true }
-    }
-    -- Automatically set up your configuration after cloning packer.nvim
-    -- Put this at the end after all plugins
-    if packer_bootstrap then
-        require('packer').sync()
-    end
-end)
+    end)
